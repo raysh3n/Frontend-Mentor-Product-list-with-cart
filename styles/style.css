@@ -1,0 +1,76 @@
+:root {
+  --clr-red: hsl(14, 86%, 42%);
+  --clr-red100: hsl(14, 83%, 34%);
+   --clr-green: hsl(159, 69%, 38%);
+  --clr-rose50: hsl(20, 50%, 98%);
+  --clr-rose100: hsl(13, 31%, 94%);
+  --clr-rose300: hsl(14, 25%, 72%);
+  --clr-rose400: hsl(7, 20%, 60%);
+  --clr-rose500: hsl(12, 20%, 44%);
+  --clr-rose900: hsl(14, 65%, 9%);
+  --clr-gray: hsla(60, 0%, 40%, 0.741);
+}
+
+
+@font-face {
+  font-family: 'Red Hat Text';
+  src: url('/assets/fonts/RedHatText-VariableFont_wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+}
+
+
+@font-face {
+  font-family: 'Red Hat Text Italic';
+  src: url('/assets/fonts/RedHatText-Italic-VariableFont_wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: italic;
+}
+
+
+
+*, *::after, *::before {
+  font-family: "Red Hat Text", serif;
+  box-sizing: border-box; /*also needed for dialog*/
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+}
+
+
+html {
+  scroll-behavior: smooth;
+}
+
+button,
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  user-select: none;
+  max-width: 100%;
+}
+
+
+
+button {
+  display: inline-block;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+
+body {
+  background-color: var(--clr-rose100);
+  height: 100dvh;
+  width: 100%;
+  /* border:10px solid yellowgreen; */
+}
+
+section {
+  outline: 1px solid black;
+}

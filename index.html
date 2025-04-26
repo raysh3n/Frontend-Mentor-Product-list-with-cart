@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<!-- displays site properly based on user's device -->
+
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="32x32"
+			href="./assets/images/favicon-32x32.png"
+		/>
+
+		<title>Frontend Mentor | Product list with cart</title>
+
+		<!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+		<style>
+			.attribution {
+				font-size: 11px;
+				text-align: center;
+			}
+			.attribution a {
+				color: hsl(228, 45%, 44%);
+			}
+		</style>
+	</head>
+	<body>
+		<script type="module" src="/src/main.js"></script>
+
+		<div class="container">
+			<section class="products">
+				<h1>Desserts</h1>
+
+				<div class="products__grid">
+					<div class="product" id="product-1">
+						<div class="product__image-section">
+							<picture>
+								<source
+									media="(min-width: 1024px)"
+									srcset="/assets/images/image-waffle-desktop.jpg"
+								/>
+								<source
+									media="(min-width: 768px)"
+									srcset="/assets/images/image-waffle-tablet.jpg"
+								/>
+								<img
+									class="product__image"
+									src="/assets/images/image-waffle-mobile.jpg"
+									alt=""
+								/>
+							</picture>
+
+							<button class="product__add-cart-button">
+								<span class="product__cart-icon"></span>
+								<span class="product__add-cart-label">Add to Cart</span>
+							</button>
+						</div>
+
+						<div class="product__info-section">
+							<div class="product__category">Waffle</div>
+							<div class="product__name">Waffle with Berries</div>
+							<div class="product__price">6.50</div>
+						</div>
+					</div>
+
+					<div class="product" id="product-2">
+						<div class="product__image-section">
+							<picture>
+								<source
+									media="(min-width: 1024px)"
+									srcset="/assets/images/image-creme-brulee-desktop.jpg"
+								/>
+								<source
+									media="(min-width: 768px)"
+									srcset="/assets/images/image-creme-brulee-tablet.jpg"
+								/>
+								<img
+									class="product__image"
+									src="/assets/images/image-creme-brulee-mobile.jpg"
+									alt=""
+								/>
+							</picture>
+							<button class="product__add-cart-button">
+								<span class="product__cart-icon"></span>
+								<span class="product__add-cart-label">Add to Cart</span>
+							</button>
+						</div>
+
+						<div class="product__info-section">
+							<div class="product__category">Crème Brûlée</div>
+							<div class="product__name">Vanilla Bean Crème Brûlée</div>
+							<div class="product__price">7.00</div>
+						</div>
+					</div>
+
+					<div class="product" id="product-3">
+						<div class="product__image-section">
+							<picture>
+								<source
+									media="(min-width: 1024px)"
+									srcset="/assets/images/image-macaron-desktop.jpg"
+								/>
+								<source
+									media="(min-width: 768px)"
+									srcset="/assets/images/image-macaron-tablet.jpg"
+								/>
+								<img
+									class="product__image"
+									src="/assets/images/image-macaron-mobile.jpg"
+									alt=""
+								/>
+							</picture>
+							<button class="product__add-cart-button">
+								<span class="product__cart-icon"></span>
+								<span class="product__add-cart-label">Add to Cart</span>
+							</button>
+						</div>
+
+						<div class="product__info-section">
+							<div class="product__category">Macaron</div>
+							<div class="product__name">Macaron Mix of Five</div>
+							<div class="product__price">8.00</div>
+						</div>
+					</div>
+
+					<div class="product" id="product-4">
+						<div class="product__image-section">
+							<picture>
+								<source
+									media="(min-width: 1024px)"
+									srcset="/assets/images/image-tiramisu-desktop.jpg"
+								/>
+								<source
+									media="(min-width: 768px)"
+									srcset="/assets/images/image-tiramisu-tablet.jpg"
+								/>
+								<img
+									class="product__image"
+									src="/assets/images/image-tiramisu-mobile.jpg"
+									alt=""
+								/>
+							</picture>
+							<button class="product__add-cart-button">
+								<span class="product__cart-icon"></span>
+								<span class="product__add-cart-label">Add to Cart</span>
+							</button>
+						</div>
+
+						<div class="product__info-section">
+							<div class="product__category">Tiramisu</div>
+							<div class="product__name">Classic Tiramisu</div>
+							<div class="product__price">5.50</div>
+						</div>
+					</div>
+
+					<div class="product" id="product-5">
+						<div class="product__image-section">
+							<picture>
+								<source
+									media="(min-width: 1024px)"
+									srcset="/assets/images/image-baklava-desktop.jpg"
+								/>
+								<source
+									media="(min-width: 768px)"
+									srcset="/assets/images/image-baklava-tablet.jpg"
+								/>
+								<img
+									class="product__image"
+									src="/assets/images/image-baklava-mobile.jpg"
+									alt=""
+								/>
+							</picture>
+							<button class="product__add-cart-button">
+								<span class="product__cart-icon"></span>
+								<span class="product__add-cart-label">Add to Cart</span>
+							</button>
+						</div>
+
+						<div class="product__info-section">
+							<div class="product__category">Baklava</div>
+							<div class="product__name">Pistachio Baklava</div>
+							<div class="product__price">4.00</div>
+						</div>
+					</div>
+
+					<div class="product" id="product-6">
+						<div class="product__image-section">
+							<picture>
+								<source
+									media="(min-width: 1024px)"
+									srcset="/assets/images/image-meringue-desktop.jpg"
+								/>
+								<source
+									media="(min-width: 768px)"
+									srcset="/assets/images/image-meringue-tablet.jpg"
+								/>
+								<img
+									class="product__image"
+									src="/assets/images/image-meringue-mobile.jpg"
+									alt=""
+								/>
+							</picture>
+							<button class="product__add-cart-button">
+								<span class="product__cart-icon"></span>
+								<span class="product__add-cart-label">Add to Cart</span>
+							</button>
+						</div>
+
+						<div class="product__info-section">
+							<div class="product__category">Pie</div>
+							<div class="product__name">Lemon Meringue Pie</div>
+							<div class="product__price">5.00</div>
+						</div>
+					</div>
+
+					<div class="product" id="product-7">
+						<div class="product__image-section">
+							<picture>
+								<source
+									media="(min-width: 1024px)"
+									srcset="/assets/images/image-cake-desktop.jpg"
+								/>
+								<source
+									media="(min-width: 768px)"
+									srcset="/assets/images/image-cake-tablet.jpg"
+								/>
+								<img
+									class="product__image"
+									src="/assets/images/image-cake-mobile.jpg"
+									alt=""
+								/>
+							</picture>
+							<button class="product__add-cart-button">
+								<span class="product__cart-icon"></span>
+								<span class="product__add-cart-label">Add to Cart</span>
+							</button>
+						</div>
+
+						<div class="product__info-section">
+							<div class="product__category">Cake</div>
+							<div class="product__name">Red Velvet Cake</div>
+							<div class="product__price">4.50</div>
+						</div>
+					</div>
+
+					<div class="product" id="product-8">
+						<div class="product__image-section">
+							<picture>
+								<source
+									media="(min-width: 1024px)"
+									srcset="/assets/images/image-brownie-desktop.jpg"
+								/>
+								<source
+									media="(min-width: 768px)"
+									srcset="/assets/images/image-brownie-tablet.jpg"
+								/>
+								<img
+									class="product__image"
+									src="/assets/images//image-brownie-mobile.jpg"
+									alt=""
+								/>
+							</picture>
+							<button class="product__add-cart-button">
+								<span class="product__cart-icon"></span>
+								<span class="product__add-cart-label">Add to Cart</span>
+							</button>
+						</div>
+
+						<div class="product__info-section">
+							<div class="product__category">Brownie</div>
+							<div class="product__name">Salted Caramel Brownie</div>
+							<div class="product__price">5.50</div>
+						</div>
+					</div>
+
+					<div class="product" id="product-9">
+						<div class="product__image-section">
+							<picture>
+								<source
+									media="(min-width: 1024px)"
+									srcset="/assets/images/image-panna-cotta-desktop.jpg"
+								/>
+								<source
+									media="(min-width: 768px)"
+									srcset="/assets/images/image-panna-cotta-tablet.jpg"
+								/>
+								<img
+									class="product__image border-red"
+									src="/assets/images/image-panna-cotta-mobile.jpg"
+									alt=""
+								/>
+							</picture>
+							<button
+								class= 
+								"product__add-cart-button--quantity "
+							>
+								<!-- <span class="product__cart-icon
+"></span> -->
+								<!-- <span class="product__add-cart-label">Add to Cart</span> -->
+
+
+								<!-- <img
+									class="product__quantity-decrement"
+									src="/assets/images/icon-decrement-quantity.svg"
+									alt=""
+								/> -->
+
+<div class="product__quantity-adjust  product__quantity-decrement">
+	<svg xmlns="http://www.w3.org/2000/svg" width="10" height="2" fill="none" viewBox="0 0 10 2"><path fill="currentcolor" d="M0 .375h10v1.25H0V.375Z"/></svg>
+</div>
+							
+
+								<span>1</span>
+							
+<div class="product__quantity-adjust product__quantity-increment">
+		<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="none" viewBox="0 0 10 10"><path fill="currentcolor" d="M10 4.375H5.625V0h-1.25v4.375H0v1.25h4.375V10h1.25V5.625H10v-1.25Z"/></svg>
+</div>
+							
+							</button>
+						</div>
+
+						<div class="product__info-section">
+							<div class="product__category">Panna Cotta</div>
+							<div class="product__name">Vanilla Panna Cotta</div>
+							<div class="product__price">6.50</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="cart">
+				<div class="cart__wrapper">
+		<h2 class="cart__title">Your Cart (0)</h2>
+
+			<div class="cart__content">
+					<!--empty cart-->
+					<img src="/assets/images/illustration-empty-cart.svg" alt="" />
+				<p class="cart__content-empty">Your added items will appear here</p>
+
+				<!-- Not empty cart -->
+					<!-- <div class="cart__item">
+						<div class="cart__item-info">
+							<p class="cart__product-name">Classic Tiramisu</p>
+							<div class="cart__pricing">
+								<div class="cart__quantity">1x</div>
+								<div class="cart__price-per-item">@$5.50</div>
+								<div class="cart__total-price">$5.50</div>
+							</div>
+						</div>
+						<div class="cart__remove-icon">
+	<svg  xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="none" viewBox="0 0 10 10"><path fill="currentcolor" d="M8.375 9.375 5 6 1.625 9.375l-1-1L4 5 .625 1.625l1-1L5 4 8.375.625l1 1L6 5l3.375 3.375-1 1Z"/></svg>
+						</div>
+					
+
+				
+					</div>
+					
+					<div class="cart__item">
+						<div class="cart__item-info">
+							<p class="cart__product-name">Classic Tiramisu</p>
+							<div class="cart__pricing">
+								<div class="cart__quantity">1x</div>
+								<div class="cart__price-per-item">@$5.50</div>
+								<div class="cart__total-price">$5.50</div>
+							</div>
+						</div>
+
+								<div class="cart__remove-icon">
+	<svg  xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="none" viewBox="0 0 10 10"><path fill="currentcolor" d="M8.375 9.375 5 6 1.625 9.375l-1-1L4 5 .625 1.625l1-1L5 4 8.375.625l1 1L6 5l3.375 3.375-1 1Z"/></svg>
+						</div>
+					</div>
+
+					<div class="cart__total-section">
+						<div class="cart__total-label">Order Total</div>
+						<div class="cart__total-amount">$46.50</div>
+					</div>
+
+					<div class="cart__carbon-info">
+						<img
+							class="cart__carbon-icon"
+							src="/assets/images/icon-carbon-neutral.svg"
+							alt=""
+						/>
+						This is a &nbsp;<span class="cart__carbon-bold">carbon-neutral</span
+						>&nbsp; delivery
+					</div>
+
+					<button class="cart__confirm-button">Confirm Order</button> -->
+				</div>
+				</div>
+		
+
+			
+			</section>
+	
+		</div>
+
+					<dialog class="dialog-confirmed">
+					<img src="/assets/images/icon-order-confirmed.svg" class="dialog-confirmed__thumbnail" alt="">
+				<h2 class="dialog-confirmed__title">Order Confirmed</h2>
+				<p class="dialog_confirmed__message">We hope you enjoy your food!</p>
+
+<div class="dialog-confirmed__list">
+
+
+
+	<div class="dialog-confirmed__item">
+	
+
+			<!-- <div class="dialog-confirmed__item-info"> -->
+
+					<img class="dialog-confirmed__thumbnail" src="/assets/images/image-tiramisu-thumbnail.jpg"></img>
+
+								<div class="dialog-confirmed__middle">
+
+	<p class="dialog-confirmed__product-name">Classic Tiramisu sui ronaldo adjalkd aisepoqiepo qweipoqw i</p>
+
+							<div class="dialog-confirmed__pricing">
+								<div class="dialog-confirmed__quantity">1x</div>
+								<div class="dialog-confirmed__price-per-item">@$5.50</div>
+							</div>
+
+								</div>
+
+						
+			<!-- </div> -->
+
+
+			<div class="dialog-confirmed__total-price">$15.50</div>
+	</div>
+
+
+	<div class="dialog-confirmed__item">
+	
+
+			<div class="dialog-confirmed__item-info">
+
+					<img class="dialog-confirmed__thumbnail" src="/assets/images/image-tiramisu-thumbnail.jpg"></img>
+
+								<div class="dialog-confirmed__middle">
+
+	<p class="dialog-confirmed__product-name">Classic Tiramisu</p>
+
+							<div class="dialog-confirmed__pricing">
+								<div class="dialog-confirmed__quantity">1x</div>
+								<div class="dialog-confirmed__price-per-item">@$5.50</div>
+							</div>
+
+								</div>
+
+						
+			</div>
+
+
+			<div class="dialog-confirmed__total-price">$15.50</div>
+	</div>
+
+
+	<div class="dialog-confirmed__item">
+	
+
+			<div class="dialog-confirmed__item-info">
+
+					<img class="dialog-confirmed__thumbnail" src="/assets/images/image-tiramisu-thumbnail.jpg"></img>
+
+								<div class="dialog-confirmed__middle">
+
+	<p class="dialog-confirmed__product-name">Classic Tiramisu</p>
+
+							<div class="dialog-confirmed__pricing">
+								<div class="dialog-confirmed__quantity">1x</div>
+								<div class="dialog-confirmed__price-per-item">@$5.50</div>
+							</div>
+
+								</div>
+
+						
+			</div>
+
+
+			<div class="dialog-confirmed__total-price">$15.50</div>
+	</div>
+
+
+
+
+
+		<div class="dialog-confirmed__total-section">
+						<div class="dialog-confirmed__total-label">Order Total</div>
+						<div class="dialog-confirmed__total-amount">$46.50</div>
+					</div>
+
+</div>
+				<button class="dialog-confirmed-new-order">Start New Order</button>
+				<!-- <button id="close-modal">Close</button> -->
+			</dialog>
+		<!-- <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a>. 
+    Coded by <a href="#">Your product__name
+ Here</a>.
+  </div> -->
+	</body>
+</html>
