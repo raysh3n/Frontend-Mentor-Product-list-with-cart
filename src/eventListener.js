@@ -10,7 +10,7 @@ export const getEventStartLoad=function() {
     document.addEventListener('DOMContentLoaded',function(){
       console.log('hoshdoadhaohdad');
       
-      fetch('/data.json').then(response=>{
+      fetch('../data.json').then(response=>{
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
