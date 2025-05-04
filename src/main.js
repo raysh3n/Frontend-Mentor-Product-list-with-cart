@@ -5,79 +5,199 @@ import '/styles/cart.css'
 import '/styles/dialog.css'
 import '/styles/utils.css'
 
-
-//console.log('hi');
-
-
-//addcart button 
-//click the addtocart button, then change to quantity button.
-//click outside the quantity button, will reset to addtocart button. 
-//click the increment icon will update the cart number, add to cart if not exist, or update the quantity and value if already in the cart. 
-//click the decrement icon will update the cart number, if exist, update the quanaty and value, if 0, remove it from the cart section
-const addCartBtn = document.querySelectorAll('.product__add-cart-button');
-
-addCartBtn.forEach(
-  (btn)=>{
-    btn.addEventListener('click', function (e) {
-
-      const clickedButton=e.currentTarget; //pay attention im using currentTarget instead of target
-      console.log(e.currentTarget);
-      const productId = (clickedButton).closest('.product__image-section').closest('.product').id;
-
-      const qtyBtn = document.createElement('button'); //creates a DOM element
-
-      qtyBtn.className = 'product__add-cart-button--quantity';
-
-      qtyBtn.innerHTML = `
-    <div class="product__quantity-adjust product__quantity-decrement">
-      <svg xmlns="http://www.w3.org/2000/svg" width="10" height="2" fill="none" viewBox="0 0 10 2">
-        <path fill="currentcolor" d="M0 .375h10v1.25H0V.375Z"/>
-      </svg>
-    </div>
-    <span>1</span>
-    <div class="product__quantity-adjust product__quantity-increment">
-      <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="none" viewBox="0 0 10 10">
-        <path fill="currentcolor" d="M10 4.375H5.625V0h-1.25v4.375H0v1.25h4.375V10h1.25V5.625H10v-1.25Z"/>
-      </svg>
-    </div>
-  `;
+import * as template from '/src/template.js'
+import * as logic from '/src/logic.js'
+//import * as dialog from '/src/dialog.js'
 
 
-      clickedButton.parentNode.replaceChild(qtyBtn, clickedButton);
 
 
-    })
+'use strict';
+
+const randomSixDigit = Math.floor(100000 + Math.random() * 900000);
+
+var order = {
+  id: randomSixDigit,
+  totalPrice: 0
+};
+window.order = order;
+
+var products = [];//[{id:0,quantity:5},{id:1,quantity:10}];
+window.products = products; //may type at console now, due to js declared as module, need to use this way
+
+//order={product[], totalPrice}
+
+//product=[ 
+//{
+// name:
+// qty:
+// productPricePerItem:
+// productTotalPricePerItem:
+//},
+//{
+// name:
+// qty:
+// pricePerItem:
+// totalPricePerItem:
+//}
+// ]
+
+
+
+
+/* in the end
+order={
+product :[ {
+id:
+name:
+qty:
+pricePerItem:
+totalPricePerItem
+},
+{
+productId:
+productName:
+productQuantity:
+pricePerItem:
+totalPricePerItem
+},
+totalPrice:
+}
+*/
+
+
+
+
+
+
+//window.addEventListener('load', function () {
+document.addEventListener('DOMContentLoaded',function(){
+  console.log('hoshdoadhaohdad');
+  
+  fetch('/data.json').then(response=>{
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    console.log('resres');
+    return response.json();
+  }).then(
+    products => {
+      // Loop through the JSON array and call the abara function
+      products.forEach(  ( product,index) => {
+        const productItem=template.getProductHTML(product,++index);
+        document.querySelector('.products__grid').appendChild(productItem);
+
+      })
+})
 });
 
 
 
-document.addEventListener('click',function(){
+const productGridSection = document.querySelector('.products__grid');
+
+productGridSection.addEventListener('click', function (event) {
+  console.log('jock')
+  if (event.target.classList.contains('product__add-cart-button--grouped')) {
+    logic.switchToQuantityButton(event);
+  }
+
+
+  if (event.target.classList.contains('product__add-cart-button-quantity--grouped')) {
+    if (event.target.classList.contains('product__quantity-decrement')) {
+
+      const retrievedId = Number(event.target.closest('.product').id.replace('product-', ''));//const retrievedId = Number(event.currentTarget.closest('.product').id.replace('product-', ''));
+      var qty = 1;
+      const product = products.find(element => element.productId === retrievedId);
+      console.log(product);
+      if (product) {
+        logic.updateMinusOrder(retrievedId, event);
+      } else {
+        logic.switchToAddCartButton(event); //if the value is 0, swtich back to addcart button
+      }
+
+
+    }
+
+    if (event.target.classList.contains('product__quantity-increment')) {
+
+      console.log('increment');
+      //get the clicked productid HEREHERE
+      const retrievedId = Number(event.target.closest('.product').id.replace('product-', ''));//const retrievedId = Number(event.currentTarget.closest('.product').id.replace('product-', ''));
+      //find it 
+      var qty = 1;
+      const product = products.find(element => element.productId === retrievedId);
+
+      console.log(product);
+      if (product) {
+        logic.updateAddOrder(retrievedId);
+      }
+
+    }
+  }
+
+
 
 });
 
-
-
-
-
-//cart section
-// x button when clicked will remove it, and also auto update the order total.
-
-
-
-//confirm order
-//display the pop up modal with order confirmed. 
-// Using debounce on window resize
-
-const orderBtn=document.querySelector('.cart__confirm-button');
-const dialog=document.querySelector('dialog')
+const orderBtn = document.querySelector('.cart__confirm-button');
+const dialog = document.querySelector('dialog')
 const closeBtn = document.querySelector('.dialog-confirmed-new-order');
 
 
-orderBtn.addEventListener('click',()=>{
-    // console.log('object');
-  dialog.showModal();  
-})
+document.querySelector('.cart').addEventListener('click', (event) => {
+  console.log(event);
+
+  if (event.target.closest('.cart__remove-icon')) {
+    console.log(event.target.closest('.cart-item'));
+    const retrievedId = Number(event.target.closest('.cart__item').id.replace('cart-product-', ''));
+    logic.removeProductCart(retrievedId,event)
+  }
+
+
+
+
+  if (event.target.classList.contains('cart__confirm-button')) {
+//reset all
+
+//populate first the dialog before show
+    dialog.querySelector('.dialog-item-list').innerHTML='';
+
+
+
+    products.forEach(function(element) {
+      dialog.querySelector('.dialog-item-list').appendChild(template.getModalItemHTML(element));
+    });
+    dialog.querySelector('.dialog-confirmed__total-amount').textContent = `$${order.totalPrice.toFixed(2) }`;
+
+    dialog.showModal();
+   // console.log(dialog.querySelector('.dialog-confirmed__total-amount'));
+
+  }
+});
 
 closeBtn.addEventListener('click', () => {
-    dialog.close();
+  dialog.close();
+  location.reload();
 });
+
+
+
+// close modal when clicking outside
+dialog.addEventListener('click', event => {
+  const rect = dialog.getBoundingClientRect();
+  const isInDialog =
+    event.clientX >= rect.left &&
+    event.clientX <= rect.right &&
+    event.clientY >= rect.top &&
+    event.clientY <= rect.bottom;
+
+  if (!isInDialog) {
+    dialog.close();
+  }
+});
+
+
+
+
+
+

@@ -11,6 +11,10 @@
     margin-bottom: 1rem;
 }
 
+.cart__total-quantity {
+    font-size: inherit;
+}
+
 
 .cart__content {
     display: flex;
@@ -35,6 +39,9 @@
 }
 
 
+.cart__item-section {
+    width: 100%;
+}
 
 .cart__item-info {
     display: flex;
@@ -81,6 +88,11 @@
 .cart__pricing {
     display: flex;
 }
+
+/* 
+.cart__pricing>* {
+    flex: 1;
+} */
 
 .cart__quantity {
     margin-right: 1rem;
@@ -177,11 +189,7 @@
 }
 
 
-@media (min-width: 768px) {
-
-    
-
-}
+@media (min-width: 768px) {}
 
 @media (min-width: 1024px) {
 
@@ -190,5 +198,5 @@
     }
 
 
-   
+
 }
