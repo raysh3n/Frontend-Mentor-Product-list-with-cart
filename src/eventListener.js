@@ -2,7 +2,7 @@
 import * as main from '/src/main.js'
 import * as template from '/src/template.js'
 import * as logic from '/src/logic.js'
-
+import productJson from '/public/data.json';
 
 
 export const getEventStartLoad=function() {
@@ -10,21 +10,27 @@ export const getEventStartLoad=function() {
     document.addEventListener('DOMContentLoaded',function(){
       console.log('hoshdoadhaohdad');
       
-      fetch('../data.json').then(response=>{
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        console.log('resres');
-        return response.json();
-      }).then(
-          products => {
-          // Loop through the JSON array and call the abara function
-          products.forEach(  ( product,index) => {
-            const productItem=template.getProductHTML(product,++index);
+
+        productJson.forEach((product, index) => {
+            const productItem = template.getProductHTML(product, ++index);
             document.querySelector('.products__grid').appendChild(productItem);
+        });
+
+    //   fetch('../data.json').then(response=>{
+    //     if (!response.ok) {
+    //       throw new Error('Network response was not ok');
+    //     }
+    //     console.log('resres');
+    //     return response.json();
+    //   }).then(
+    //       products => {
+    //       // Loop through the JSON array and call the abara function
+    //       products.forEach(  ( product,index) => {
+    //         const productItem=template.getProductHTML(product,++index);
+    //         document.querySelector('.products__grid').appendChild(productItem);
     
-          })
-    })
+    //       })
+    // })
     });
     
 }
