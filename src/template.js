@@ -42,9 +42,6 @@ export const getProductHTML = function (product, id) {
 
 
 
-
-
-
 export const getQtyBtnHTML = function (qty = 1) {
   return `
     <div class="product__quantity-adjust product__quantity-decrement product__add-cart-button-quantity--grouped">

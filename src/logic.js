@@ -1,5 +1,5 @@
 import * as template from '/src/template.js'
-
+import * as main from '/src/main.js'
 
 'use strict'
 
@@ -15,7 +15,7 @@ export const updateAddOrder = function (id) {
     const product = document.querySelector(`#product-${id}`);
 
     //update the array
-    const productObject = products.find(object => object.productId === id);
+    const productObject = main.products.find(object => object.productId === id);
 
     const cartContent = document.querySelector('.cart__content');
     const cartItemSection = document.querySelector('.cart__item-section');
@@ -49,14 +49,14 @@ export const updateAddOrder = function (id) {
             productTotalPricePerItem: totalPricePerItem
 
         }
-        products.push(obj);
-        console.log(products);
-        order.totalPrice += pricePerItem;
+        main.products.push(obj);
+        console.log(main.products);
+        main.order.totalPrice += pricePerItem;
 
 
         //add to  the UI Cart
         totalquantity += 1;
-        cartTotalQty.textContent = totalquantity;
+        cartTotalQty.textContent = `(${totalquantity})`;
 
         //update the Cart Section - qty and price
 
@@ -71,14 +71,14 @@ export const updateAddOrder = function (id) {
             cartContent.innerHTML = '';
             cartContent.appendChild(cartItemSection);
 
-            cartContent.insertAdjacentHTML('beforeend', template.getCartFooterHTML(order));
+            cartContent.insertAdjacentHTML('beforeend', template.getCartFooterHTML(main.order));
 
         } else {
 
             cartItemSection.appendChild(template.getCartItemHTML(obj));
 
             var cartTotalAmount = document.querySelector('.cart__total-amount');
-            cartTotalAmount.textContent = `$${order.totalPrice.toFixed(2)}`;
+            cartTotalAmount.textContent = `$${main.order.totalPrice.toFixed(2)}`;
 
 
         }
@@ -93,15 +93,15 @@ export const updateAddOrder = function (id) {
 
             productObject.productQuantity += 1;
             productObject.productTotalPricePerItem = productObject.productPricePerItem * productObject.productQuantity
-            console.log(products);
-            order.totalPrice += productObject.productPricePerItem;
+            console.log(main.products);
+            main.order.totalPrice += productObject.productPricePerItem;
 
 
             //update the UI button number
             product.querySelector('.product__quantity').textContent = productObject.productQuantity;
 
             totalquantity += 1;
-            cartTotalQty.textContent = totalquantity;
+            cartTotalQty.textContent = `(${totalquantity})`;
 
             //update the Cart Section - qty and price
 
@@ -114,7 +114,7 @@ export const updateAddOrder = function (id) {
 
 
                 var cartTotalAmount = document.querySelector('.cart__total-amount');
-                cartTotalAmount.textContent = `$${order.totalPrice.toFixed(2)}`;
+                cartTotalAmount.textContent = `$${main.order.totalPrice.toFixed(2)}`;
 
             }
 
@@ -135,13 +135,13 @@ export const updateMinusOrder = function (id, event) {
     const cartProductItem = document.querySelector(`#cart-product-${id}`)
     const cartItemSection = document.querySelector(`.cart__item-section`)
     //update the array
-    const productObject = products.find(object => object.productId === id);
+    const productObject = main.products.find(object => object.productId === id);
     if (productObject.productQuantity > 1) { //need to CHANGE TO when more than 1. if 0, delete it instead from the 
 
         productObject.productQuantity -= 1;
         productObject.productTotalPricePerItem = productObject.productPricePerItem * productObject.productQuantity
-        console.log(products);
-        order.totalPrice -= productObject.productPricePerItem;
+        console.log(main.products);
+        main.order.totalPrice -= productObject.productPricePerItem;
 
 
         //update the UI button number
@@ -149,26 +149,26 @@ export const updateMinusOrder = function (id, event) {
 
         //update the Cart Section - qty and price 
         totalquantity -= 1;
-        cartTotalQty.textContent = totalquantity;
+        cartTotalQty.textContent = `(${totalquantity})`;
         const item = template.getCartItemHTML(productObject);
         cartItemSection.replaceChild(item, cartProductItem);
 
         var cartTotalAmount = document.querySelector('.cart__total-amount');
-        cartTotalAmount.textContent = `$${order.totalPrice.toFixed(2)}`;
+        cartTotalAmount.textContent = `$${main.order.totalPrice.toFixed(2)}`;
 
     } else {
-        const index = products.findIndex(object => object.productId === id);
-        console.log(products);
+        const index = main.products.findIndex(object => object.productId === id);
+        console.log(main.products);
         console.log(`${id}`); //1
         console.log(`index iss:  ${index}`);
-        const pricePerItem = products[index].productPricePerItem
-        products.splice(index, 1);
-        console.log(products);
-        order.totalPrice -= pricePerItem;
+        const pricePerItem = main.products[index].productPricePerItem
+        main.products.splice(index, 1);
+        console.log(main.products);
+        main.order.totalPrice -= pricePerItem;
 
         //update the Cart Section - qty and price 
         totalquantity -= 1;
-        cartTotalQty.textContent = totalquantity;
+        cartTotalQty.textContent = `(${totalquantity})`;
 
 
 
@@ -179,7 +179,7 @@ export const updateMinusOrder = function (id, event) {
 
         //remove from  the UI Cart
         var cartTotalAmount = document.querySelector('.cart__total-amount');
-        cartTotalAmount.textContent = `$${order.totalPrice.toFixed(2)}`;
+        cartTotalAmount.textContent = `$${main.order.totalPrice.toFixed(2)}`;
 
 
 
@@ -187,7 +187,7 @@ export const updateMinusOrder = function (id, event) {
     }
 
     //if afterwards the product is empty, switch batch to empty cart UI
-    if (products.length === 0) {
+    if (main.products.length === 0) {
         const cartContent = document.querySelector('.cart__content');
         cartContent.innerHTML = template.getEmptyCartHTML();
     }
@@ -200,26 +200,26 @@ export const updateMinusOrder = function (id, event) {
 export const removeProductCart = function(id, event) {
 
 //remove from Cart totalPrice
-    order.totalPrice -= Number(products.find(p => p.productId === id).productTotalPricePerItem);
+    main.order.totalPrice -= Number(main.products.find(p => p.productId === id).productTotalPricePerItem);
 
     var cartTotalAmount = document.querySelector('.cart__total-amount');
-    cartTotalAmount.textContent = `$${order.totalPrice.toFixed(2)}`;
+    cartTotalAmount.textContent = `$${main.order.totalPrice.toFixed(2)}`;
 
 //remove from UI
     document.querySelector(`#cart-product-${id}`).remove();
     
 //update the totalquantity
-    totalquantity -= Number(products.find(p => p.productId === id).productQuantity);
-    cartTotalQty.textContent = totalquantity;
+    totalquantity -= Number(main.products.find(p => p.productId === id).productQuantity);
+    cartTotalQty.textContent = `(${totalquantity})`;
 
 
 
 
 
 //remove from the prodcut array
-    const index=products.findIndex(product=>product.productId===id);
+    const index = main.products.findIndex(product=>product.productId===id);
     if(index!==-1) {
-        products.splice(index,1);
+        main.products.splice(index,1);
         console.log('deletd')
     }
 
@@ -227,7 +227,7 @@ export const removeProductCart = function(id, event) {
 
 
 //show empty cart UI if no more
-    if(products.length===0) {
+    if (main.products.length===0) {
         const cartContent = document.querySelector('.cart__content');
         cartContent.innerHTML = template.getEmptyCartHTML();
     }
@@ -267,11 +267,11 @@ export const switchToQuantityButton = function (event) {
     const retrievedId = Number(event.target.closest('.product').id.replace('product-', ''));//const retrievedId = Number(event.currentTarget.closest('.product').id.replace('product-', ''));
     //find it 
     var qty = 1;
-    const product = products.find(element => element.productId === retrievedId);
+    const product = main.products.find(element => element.productId === retrievedId);
 
     console.log(product);
     if (product) {
-        qty = products.productQuantity;  //if have the product, then just grab from there
+        qty = main.products.productQuantity;  //if have the product, then just grab from there
     } else {
         //if the product does not exist yet in the array, then add them in
         // addOrder(retrievedId);

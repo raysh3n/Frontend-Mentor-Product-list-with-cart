@@ -80,7 +80,7 @@ dialog[open]::backdrop {
     display: flex;
     gap: 1rem;
     flex: 1;
-    border: 1px solid green;
+    /* border: 1px solid green; */
 
 }
 
@@ -107,9 +107,6 @@ dialog[open]::backdrop {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-
-
-
 
 }
 
@@ -139,7 +136,7 @@ dialog[open]::backdrop {
     flex-direction: column;
     justify-content: center;
     gap: 0.5rem;
-    border: 1px solid blue;
+    /* border: 1px solid blue; */
     flex: 1;
 
 
@@ -161,15 +158,6 @@ dialog[open]::backdrop {
 }
 
 
-.cart__item {
-    width: 100%;
-    /* outline: 1px solid black; */
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-block: 1rem;
-    border-bottom: 0.4px solid rgb(91, 90, 90);
-}
 
 
 
@@ -247,7 +235,8 @@ dialog[open]::backdrop {
 @media (min-width: 768px) {
 
     dialog {
-        width: fit-content;
+        /* width: fit-content; */
+        max-width:30rem;
         height: fit-content;
         /* bottom: -13%; */
         max-height: calc(100% - 2em - 6px);
