@@ -43,7 +43,7 @@ Users should be able to:
 ### Links
 
 - Solution URL: [here](https://www.frontendmentor.io/solutions/responsive-product-list-with-cart-solution-ZAVv2G077e)
-- Live Site URL: [here](https://app.netlify.com/sites/fem-product-list-with-cart-raysh3n/overview)
+- Live Site URL: [here](https://fem-product-list-with-cart-raysh3n.netlify.app/)
 
 ## My process
  - spent quite a lot of time aligning the cart button to the image. 
